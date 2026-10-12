@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10151d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ŞİMŞEK CAR">
+<title>ŞİMŞEK CAR</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10151d;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:650px;margin:auto;padding:24px 18px 40px}
+header{display:flex;align-items:center;gap:13px;margin:12px 0 26px}
+.logo{background:#e52d3a;padding:14px;border-radius:16px;font-size:25px}
+h1{font-size:25px;margin:0}
+p{color:#aab6c5}
+input,button{font:inherit}
+input{width:100%;padding:15px;border-radius:13px;border:1px solid #394456;background:#202938;color:white}
+.search{display:flex;gap:8px}
+button,.tile{border:0;border-radius:13px;padding:14px;background:#293548;color:white}
+.search button{background:#e52d3a;font-weight:700}
+h2{font-size:17px;margin-top:27px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:block;text-decoration:none;min-height:105px;border:1px solid #344052}
+.tile b{display:block;font-size:17px;margin-bottom:8px}
+.tile span{color:#b9c4d3;font-size:13px}
+.note{font-size:12px;line-height:1.6;margin-top:26px}
+a:focus,button:focus,input:focus{outline:2px solid #e52d3a}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="logo">⚡</div>
+  <div>
+    <h1>ŞİMŞEK CAR</h1>
+    <p style="margin:5px 0">Medya · TV · İnternet</p>
+  </div>
+</header>
+
+<h2>İnternet adresi aç</h2>
+<form class="search" id="webform">
+  <input id="address" type="text"
+    placeholder="Örn. wikipedia.org"
+    autocomplete="url" aria-label="İnternet adresi">
+  <button type="submit">Git</button>
+</form>
+
+<h2>Video ve medya</h2>
+<div class="tiles">
+  <a class="tile" href="https://m.youtube.com/" target="_blank" rel="noopener">
+    <b>▶ YouTube</b><span>Video ve içerikler</span>
+  </a>
+  <a class="tile" href="https://www.tabii.com/" target="_blank" rel="noopener">
+    <b>▣ tabii</b><span>Dijital yayınlar</span>
+  </a>
+  <a class="tile" href="https://www.trtizle.com/canli-tv" target="_blank" rel="noopener">
+    <b>📺 TRT İzle</b><span>Canlı TV ve programlar</span>
+  </a>
+  <a class="tile" href="https://www.trthaber.com/canli.html" target="_blank" rel="noopener">
+    <b>📰 TRT Haber</b><span>Haber yayını</span>
+  </a>
+</div>
+
+<h2>Hızlı erişim</h2>
+<div class="tiles">
+  <a class="tile" href="https://www.google.com/" target="_blank" rel="noopener">
+    <b>⌕ Google</b><span>İnternette ara</span>
+  </a>
+  <a class="tile" href="https://www.wikipedia.org/" target="_blank" rel="noopener">
+    <b>🌐 Wikipedia</b><span>Bilgiye ulaş</span>
+  </a>
+</div>
+
+<p class="note">
+Bu uygulama bir web uygulamasıdır. Bağlantılar internet erişimi
+ve ilgili hizmetlerin desteğiyle açılır. Video oynatma ve yayın
+erişimi ülkeye, hizmete ve cihaza bağlı olabilir.
+CarPlay desteği garanti edilmez. Video izlerken aracınızı güvenli
+bir yere park edin.
+</p>
+</main>
+<script>
+document.getElementById("webform").addEventListener("submit",function(e){
+  e.preventDefault();
+  let value=document.getElementById("address").value.trim();
+  if(!value)return;
+  if(!/^https?:\/\//i.test(value))value="https://"+value;
+  try{
+    const u=new URL(value);
+    if(u.protocol!=="https:"&&u.protocol!=="http:")return;
+    window.open(u.href,"_blank","noopener");
+  }catch(err){
+    alert("Geçerli bir internet adresi gir.");
+  }
+});
+</script>
+</body>
+</html>
